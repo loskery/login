@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { TaiKhoan } from '../app/taiKhoan';
 import { catchError, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -13,7 +13,8 @@ export class LoginService {
     constructor(private _http: HttpClient) { }
 
     checkLogin(user: TaiKhoan) {
-        return this._http.post<any>(this._url, user)
+        let httpHeader = new HttpHeaders();
+        return this._http.post<any>(this._url, user, { headers: httpHeader })
             .pipe(
                 catchError(this.errorHandler),
                 tap(res => this.ketQua = res.status)
@@ -21,5 +22,6 @@ export class LoginService {
     }
     errorHandler(error: HttpErrorResponse) {
         return throwError(this.ketQua = error.status || "Server error")
+
     }
 }
