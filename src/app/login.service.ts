@@ -14,10 +14,18 @@ export class LoginService {
 
     checkLogin(user: TaiKhoan) {
         let httpHeader = new HttpHeaders();
+        httpHeader.set('Content-Type', 'application/json; charset=utf-8');
         return this._http.post<any>(this._url, user, { headers: httpHeader })
             .pipe(
                 catchError(this.errorHandler),
-                tap(res => this.ketQua = res.status)
+                tap(res => {
+                    res.setHeader('Access-Control-Expose-Headers', 'Access-Control-*, Origin, X-Requested-With, Content-Type, Accept, Authorization');
+                    res.setHeader('Access-Control-Allow-Origin', '*');
+                    res.setHeader('Access-Control-Allow-Methods', 'HEAD, GET, POST, OPTIONS, PUT, PATCH, DELETE');
+                    res.setHeader('Access-Control-Allow-Headers', 'Access-Control-*, Origin, X-Requested-With, Content-Type, Accept, Authorization');
+                    res.setHeader('Access-Control-Allow-Credentials', true);
+                    this.ketQua = res.status
+                })
             )
     }
     errorHandler(error: HttpErrorResponse) {
