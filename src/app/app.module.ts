@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AppRouter } from './app.routing';
 import { LogoutComponent } from './components/logout/logout.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     FormsModule,
     HttpClientModule,
     AppRouter,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

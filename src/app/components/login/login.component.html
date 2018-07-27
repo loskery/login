@@ -1,17 +1,29 @@
 <div class="container">
   <div class="d-flex justify-content-center">
     <div class="card w-25 p-3">
-      <form (submit)="onSubmit($event)">
+      <form (submit)="onSubmit($event)" [formGroup]="validateForm" novalidate>
         <h3>Thông Tin Đăng Nhập</h3>
 
         <div class="form-group">
           <label>UserName</label>
-          <input type="text" class="form-control" placeholder="Username" id="userName" required>
+          <input type="text" class="form-control" placeholder="Username" id="userName" formControlName="userName">
+          <div *ngIf="validateForm.controls['userName'].invalid && (validateForm.controls['userName'].dirty || validateForm.controls['userName'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="validateForm.controls['userName'].errors.required">
+              user name is required.
+            </div>
+          </div>
         </div>
 
         <div class="form-group">
           <label>Password</label>
-          <input type="password" class="form-control" autocomplete="off" placeholder="Password" id="password" required>
+          <input type="password" class="form-control" autocomplete="off" placeholder="Password" id="password" formControlName="password">
+          <div *ngIf="validateForm.controls['password'].invalid && (validateForm.controls['password'].dirty || validateForm.controls['password'].touched)"
+            class="alert alert-danger">
+            <div *ngIf="validateForm.controls['password'].errors.required">
+              password is required.
+            </div>
+          </div>
         </div>
 
         <div class="d-flex justify-content-center form-group">
@@ -20,6 +32,5 @@
         </div>
       </form>
     </div>
-    <router-outlet></router-outlet>
   </div>
 </div>
