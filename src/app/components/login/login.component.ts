@@ -8,14 +8,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-
   account = new TaiKhoan();
-  topicHasError = true;
   submitted = false;
   errorMsg = '';
-
   constructor(private _loginService: LoginService, private router: Router) { }
-  onSubmit() {
+
+
+  onSubmit(event) {
+    this.submitted = true;
+    event.preventDefault()
+    const target = event.target
+    this.account.userName = target.querySelector('#userName').value
+    this.account.password = target.querySelector('#password').value
+    this.router.navigate(['admin'])
     this.submitted = true;
     this._loginService.checkLogin(this.account)
       .subscribe(

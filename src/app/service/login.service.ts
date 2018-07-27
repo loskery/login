@@ -41,7 +41,6 @@ export class LoginService {
                     res.setHeader('Access-Control-Allow-Methods', 'HEAD, GET, POST, OPTIONS, PUT, PATCH, DELETE');
                     res.setHeader('Access-Control-Allow-Headers', 'Access-Control-*, Origin, X-Requested-With, Content-Type, Accept, Authorization');
                     res.setHeader('Access-Control-Allow-Credentials', true);
-
                 })
             )
     }

@@ -22,7 +22,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRouter
+    AppRouter,
   ],
   providers: [],
   bootstrap: [AppComponent]
