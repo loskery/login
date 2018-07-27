@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <div class="card w-25 p-3">
+      <form #userForm="ngForm" *ngIf="!submitted" (ngSubmit)="onSubmit()">
+        <h3>Thông Tin Đăng Nhập</h3>
+        <div class="form-group">
+          <label>UserName</label>
+          <input type="text" class="form-control" placeholder="Enter UserName" name="userName" ngModel required>
+          <!-- <small class="text-danger" [class.d-none]="userName.valid || userName.untouched">Name is required</small> -->
+          <br>
+          <label>Password</label>
+          <input type="password" class="form-control" placeholder="Enter password" name="password" ngModel required>
+          <!-- <small class="text-danger" [class.d-none]="password.valid || password.untouched">password not null</small> -->
+          <br>
+          <div class="d-flex justify-content-center">
+            <button class="btn btn-primary" type="submit">Login</button>
+            <button class="btn btn-primary" type="button" routerLink="/home">Redirect</button>
+          </div>
+        </div>
+      </form>
+      <div class="alert alert-danger" *ngIf="errorMsg">
+        {{errorMsg}}
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
